@@ -40,3 +40,13 @@ void	convert_line(char *line)
 			line[idx] = ' ';
 	}
 }
+
+void	cnt_unique_id(int id, int *arr)
+{
+	if (id == A)
+		arr[0] += 1;
+	if (id == C)
+		arr[1] += 1;
+	if (id == L)
+		arr[2] += 1;
+}

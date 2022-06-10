@@ -1,40 +1,61 @@
 #include "minirt.h"
 
-int	parse_sphere(t_data *data, char **tokens)
+int	parse_sphere(t_data *data, char **tokens, int id)
 {
-	data->sph.coord[X] = ft_atof(tokens[1]);
-	data->sph.coord[Y] = ft_atof(tokens[2]);
-	data->sph.coord[Z] = ft_atof(tokens[3]);
-	data->sph.diameter = ft_atof(tokens[4]);
-	data->sph.rgb[R] = ft_atof(tokens[5]);
-	data->sph.rgb[G] = ft_atof(tokens[6]);
-	data->sph.rgb[B] = ft_atof(tokens[7]);
+	t_obj	*sph;
+
+	sph = lst_new(id);
+	if (!sph)
+		return (0);
+	sph->coord[X] = ft_atof(tokens[1]);
+	sph->coord[Y] = ft_atof(tokens[2]);
+	sph->coord[Z] = ft_atof(tokens[3]);
+	sph->diameter = ft_atof(tokens[4]);
+	sph->rgb[R] = ft_atof(tokens[5]);
+	sph->rgb[G] = ft_atof(tokens[6]);
+	sph->rgb[B] = ft_atof(tokens[7]);
+	lst_addback(&(data->objs), sph);
+	return (1);
 }
 
-int parse_plane(t_data *data, char **tokens)
+int parse_plane(t_data *data, char **tokens, int id)
 {
-	data->pl.coord[X] = ft_atof(tokens[1]);
-	data->pl.coord[Y] = ft_atof(tokens[2]);
-	data->pl.coord[Z] = ft_atof(tokens[3]);
-	data->pl.norm_vec[X] = ft_atof(tokens[4]);
-	data->pl.norm_vec[Y] = ft_atof(tokens[5]);
-	data->pl.norm_vec[Z] = ft_atof(tokens[6]);
-	data->pl.rgb[R] = ft_atof(tokens[7]);
-	data->pl.rgb[G] = ft_atof(tokens[8]);
-	data->pl.rgb[B] = ft_atof(tokens[9]);
+	t_obj	*pl;
+
+	pl = lst_new(id);
+	if (!pl)
+		return (0);
+	pl->coord[X] = ft_atof(tokens[1]);
+	pl->coord[Y] = ft_atof(tokens[2]);
+	pl->coord[Z] = ft_atof(tokens[3]);
+	pl->norm_vec[X] = ft_atof(tokens[4]);
+	pl->norm_vec[Y] = ft_atof(tokens[5]);
+	pl->norm_vec[Z] = ft_atof(tokens[6]);
+	pl->rgb[R] = ft_atof(tokens[7]);
+	pl->rgb[G] = ft_atof(tokens[8]);
+	pl->rgb[B] = ft_atof(tokens[9]);
+	lst_addback(&(data->objs), pl);
+	return (1);
 }
 
-int parse_cylinder(t_data *data, char **tokens)
+int parse_cylinder(t_data *data, char **tokens, int id)
 {
-	data->cyl.coord[X] = ft_atof(tokens[1]);
-	data->cyl.coord[Y] = ft_atof(tokens[2]);
-	data->cyl.coord[Z] = ft_atof(tokens[3]);
-	data->cyl.norm_vec[X] = ft_atof(tokens[4]);
-	data->cyl.norm_vec[Y] = ft_atof(tokens[5]);
-	data->cyl.norm_vec[Z] = ft_atof(tokens[6]);
-	data->cyl.diameter = ft_atof(tokens[7]);
-	data->cyl.height = ft_atof(tokens[8]);
-	data->cyl.rgb[R] = ft_atof(tokens[9]);
-	data->cyl.rgb[G] = ft_atof(tokens[10]);
-	data->cyl.rgb[B] = ft_atof(tokens[11]);
+	t_obj	*cyl;
+
+	cyl = lst_new(id);
+	if (!cyl)
+		return (0);
+	cyl->coord[X] = ft_atof(tokens[1]);
+	cyl->coord[Y] = ft_atof(tokens[2]);
+	cyl->coord[Z] = ft_atof(tokens[3]);
+	cyl->norm_vec[X] = ft_atof(tokens[4]);
+	cyl->norm_vec[Y] = ft_atof(tokens[5]);
+	cyl->norm_vec[Z] = ft_atof(tokens[6]);
+	cyl->diameter = ft_atof(tokens[7]);
+	cyl->height = ft_atof(tokens[8]);
+	cyl->rgb[R] = ft_atof(tokens[9]);
+	cyl->rgb[G] = ft_atof(tokens[10]);
+	cyl->rgb[B] = ft_atof(tokens[11]);
+	lst_addback(&(data->objs), cyl);
+	return (1);
 }

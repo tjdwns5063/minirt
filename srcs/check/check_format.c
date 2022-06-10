@@ -1,5 +1,10 @@
 #include "minirt.h"
 
+int	check_id_cnt(int *arr)
+{
+	return (arr[0] == 1 && arr[1] == 1 && arr[2] == 1);
+}
+
 static int	check_short_format(char *line)
 {
 	int	dot_cnt;
@@ -80,14 +85,13 @@ static int	check_nums(char **tokens, int flag)
 
 int	check_format(char *line)
 {
-	int		id;
-	int		ret;
-	char	**tokens;
+	int			id;
+	int			ret;
+	char		**tokens;
 
 	tokens = ft_split(line, ' ');
 	id = check_id(tokens);
 	ret = 1;
-	//revise
 	ret = check_nums(tokens, id);
 	double_arr_free((void **)tokens);
 	return (ret);

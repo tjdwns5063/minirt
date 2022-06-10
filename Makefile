@@ -8,8 +8,9 @@ FT = $(FT_DIR)libft.a
 LINK = -L$(FT_DIR) -lft
 INCLUDE = -I./incs -I./libft
 
-SRCS_IO = $(addprefix ./srcs/io/, read.c io_utils.c parse.c parse2.c)
-SRCS_CHECK = $(addprefix ./srcs/check/, check_format.c check_utils.c)
+SRCS_IO = $(addprefix ./srcs/io/, read.c io_utils.c parse.c parse2.c lst_utils.c\
+	print.c print2.c)
+SRCS_CHECK = $(addprefix ./srcs/check/, check_format.c check_utils.c check_range.c)
 MAIN = ./srcs/main.c
 SRCS = $(SRCS_IO) $(SRCS_CHECK) $(MAIN)
 OBJS = $(SRCS:.c=.o)

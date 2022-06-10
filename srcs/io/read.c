@@ -1,5 +1,34 @@
 #include "minirt.h"
 
+int	parse(int fd, t_data *data)
+{
+	char		*line;
+	int			id;
+	static int	id_cnt[3];
+
+	while (get_next_line(fd, &line))
+	{
+		if (!check_empty_line(line))
+		{
+			id = check_format(line);
+			if (id)
+			{
+				cnt_unique_id(id, id_cnt);
+				if (!parse_data(data, line, id))
+				{
+					free(line);
+					return (0);
+				}
+			}
+		}
+		free(line);
+	}
+	free(line);
+	if (!check_id_cnt(id_cnt))
+		return (0);
+	return (1);
+}
+
 int	rt_read(char *filename, t_data *data)
 {
 	int		fd; 
@@ -9,18 +38,11 @@ int	rt_read(char *filename, t_data *data)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (0);
-	parse(fd, data);
-	printf("%f\n", data->a_light.light_ratio);
+	if (!parse(fd, data))
+		return (0);
 	close(fd);
 	//check_range
-	// if (!check_data(datas))
-	// 	arr_free_and_error((void **)datas);
-	// ret = (double **)malloc(sizeof(double *) * (len + 1));
-	// if (!ret)
-	// 	arr_free_and_error((void **)datas);
-	// ret[len] = 0;
-	// while (--len >= 0)
-	// 	ret[len] = convert_data(datas[len]);
-	// double_arr_free((void **)datas);
+	if (!check_data(data))
+		return (0);
 	return (1);
 }
