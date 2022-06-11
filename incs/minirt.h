@@ -8,6 +8,7 @@
 # include <fcntl.h>
 
 # include "libft.h"
+# include "mlx.h"
 # include "proto.h"
 # include "macro.h"
 
