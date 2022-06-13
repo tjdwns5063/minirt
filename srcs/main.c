@@ -1,26 +1,8 @@
 #include <minirt.h>
 
-// int	hit_sphere(t_obj *sp, t_ray *r)
-// {
-// 	double	oc[3];
-// 	double	a;
-// 	double	b;
-// 	double	c;
-// 	double	discrim;
-
-// 	oc[X] = r->vec[X] - sp->coord[X];
-// 	oc[Y] = r->vec[Y] - sp->coord[Y];
-// 	oc[Z] = r->vec[Z] - sp->coord[Z];
-// 	a = pow(r->vec[X], 2.) + pow(r->vec[Y] , 2.) + pow(r->vec[Z], 2.);
-// 	b = ((r->vec[X] * oc[X]) + (r->vec[Y] * oc[Y]) + (r->vec[Z] * oc[Z])) * 2.;
-// 	c = (pow(oc[X] , 2.) + pow(oc[Y], 2.) + pow(oc[Z], 2.)) - (pow(sp->diameter / 2., 2.));
-// 	discrim = b * b - 4 * a * c;
-// 	return (discrim > 0); 
-// }
-
 int main(int ac, char **av)
 {
-	t_data	data;
+	t_data		data;
 	t_mlx		mlx;
 	t_canvas	canvas;
 
