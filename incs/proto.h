@@ -6,6 +6,8 @@ typedef struct	s_a_light	t_a_light;
 typedef struct	s_light		t_light;
 typedef struct	s_cam		t_cam;
 typedef struct	s_obj		t_obj;
+typedef struct	s_canvas	t_canvas;
+typedef struct	s_mlx		t_mlx;
 
 struct	s_a_light
 {
@@ -44,6 +46,21 @@ struct	s_data
 	t_cam		cam;
 	t_light		light;
 	t_obj		*objs;
+};
+
+struct s_canvas
+{
+	char	*addr;
+	int 	bit_per_pixel;
+	int		size_line;
+	int		endian;
+};
+
+struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
 };
 
 # endif
