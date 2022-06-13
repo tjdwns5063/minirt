@@ -5,6 +5,7 @@ typedef struct	s_data		t_data;
 typedef struct	s_a_light	t_a_light;
 typedef struct	s_light		t_light;
 typedef struct	s_cam		t_cam;
+typedef struct	s_ray		t_ray;
 typedef struct	s_obj		t_obj;
 typedef struct	s_canvas	t_canvas;
 typedef struct	s_mlx		t_mlx;
@@ -20,6 +21,12 @@ struct	s_cam
 	double	coord[3];
 	double	norm_vec[3];
 	double	fov;
+	double	focal_len;
+	double	v_height;
+	double	v_width;
+	double	horizontal[3];
+	double	vertical[3];
+	double	left_bottom[3];
 };
 
 struct	s_light
@@ -39,6 +46,12 @@ struct s_obj
 	double			rgb[3];
 	struct s_obj	*next;
 };
+
+typedef struct s_ray
+{
+	double	coord[3];
+	double	vec[3];
+}	t_ray;
 
 struct	s_data
 {

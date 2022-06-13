@@ -14,8 +14,12 @@ INCLUDE = -I./incs -I$(FT_DIR) -I$(MINI_LIB_DIR)
 SRCS_IO = $(addprefix ./srcs/io/, read.c io_utils.c parse.c parse2.c lst_utils.c\
 	print.c print2.c)
 SRCS_CHECK = $(addprefix ./srcs/check/, check_format.c check_utils.c check_range.c)
+SRCS_INIT = $(addprefix ./srcs/init/, init.c)
+SRCS_CALC = $(addprefix ./srcs/calc/, vec_calc.c)
+SRCS_RENDER = $(addprefix ./srcs/render/, render.c)
+
 MAIN = ./srcs/main.c
-SRCS = $(SRCS_IO) $(SRCS_CHECK) $(MAIN)
+SRCS = $(SRCS_IO) $(SRCS_CHECK) $(SRCS_INIT) $(SRCS_CALC) $(SRCS_RENDER) $(MAIN)
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

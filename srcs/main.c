@@ -1,12 +1,22 @@
 #include <minirt.h>
 
-void	img_pixel_put(t_canvas *canvas, int x, int y, int color)
-{
-	char	*dst;
+// int	hit_sphere(t_obj *sp, t_ray *r)
+// {
+// 	double	oc[3];
+// 	double	a;
+// 	double	b;
+// 	double	c;
+// 	double	discrim;
 
-	dst = canvas->addr + (y * canvas->size_line) + (x * (canvas->bit_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
+// 	oc[X] = r->vec[X] - sp->coord[X];
+// 	oc[Y] = r->vec[Y] - sp->coord[Y];
+// 	oc[Z] = r->vec[Z] - sp->coord[Z];
+// 	a = pow(r->vec[X], 2.) + pow(r->vec[Y] , 2.) + pow(r->vec[Z], 2.);
+// 	b = ((r->vec[X] * oc[X]) + (r->vec[Y] * oc[Y]) + (r->vec[Z] * oc[Z])) * 2.;
+// 	c = (pow(oc[X] , 2.) + pow(oc[Y], 2.) + pow(oc[Z], 2.)) - (pow(sp->diameter / 2., 2.));
+// 	discrim = b * b - 4 * a * c;
+// 	return (discrim > 0); 
+// }
 
 int main(int ac, char **av)
 {
@@ -18,18 +28,23 @@ int main(int ac, char **av)
 		return (print_error("Error\n", 1));
 	if (!rt_read(av[1], &data))
 		return (print_error("Error\n", 1));
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, 800, 600, "minirt");
-	mlx.img = mlx_new_image(mlx.mlx, 800, 600);
-
-
-	canvas.addr = mlx_get_data_addr(mlx.img, &(canvas.bit_per_pixel), &(canvas.size_line), &(canvas.endian));
+	init_cam(&(data.cam));
+	init_mlx(&(mlx));
+	init_canvas(&canvas, &mlx);
 	print_data(data);
+	printf("x: %f y: %f z: %f\n", data.cam.left_bottom[X], data.cam.left_bottom[Y], data.cam.left_bottom[Z]);
 	int color = ((int)data.objs->rgb[0] << 16) + ((int)data.objs->rgb[1] << 8) + ((int)data.objs->rgb[2]);
 	for (int i = 0; i < 800; i++)
 	{
 		for (int j = 0; j < 600; j++)
 		{
+			t_ray ray;
+
+			double u, v;
+			u = (double)i / 799;
+			v = (double)j / 599;
+			init_ray(&ray, &data, u, v);
+			color = get_color(&ray, data.objs);
 			img_pixel_put(&canvas, i, j, color);
 		}
 	}
