@@ -9,7 +9,7 @@ int	get_rgb_value(t_color *color)
 	r = ((int)(color->x * 255.)) << 16;
 	g = ((int)(color->y * 255.)) << 8;
 	b = (int)(color->z * 255.);
-	// printf("rgb: %d\n", r+g+b);
+	printf("rgb: %d\n", r+g+b);
 	return (r + g + b);
 }
 
@@ -28,8 +28,8 @@ t_color	get_color(t_ray *r, t_obj *sp)
 	t_color	c2;
 	t_color	ret;
 
-	// if (hit_sphere(sp, r))
-	// 	return (255 << 16);
+	if (hit_sphere(sp, r))
+		return (init_vec(1., 0, 0));
 	t = 0.5 * (r->vec.y + 1.0);
 	c1 = init_vec(1.0 * t, 1.0 * t, 1.0 * t);
 	c2 = init_vec(0.5 * (1 - t), 0.7 * (1 - t), 1.0 * (1 - t));

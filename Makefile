@@ -17,9 +17,10 @@ SRCS_CHECK = $(addprefix ./srcs/check/, check_format.c check_utils.c check_range
 SRCS_INIT = $(addprefix ./srcs/init/, init.c init2.c)
 SRCS_CALC = $(addprefix ./srcs/calc/, vec_calc.c)
 SRCS_RENDER = $(addprefix ./srcs/render/, render.c)
+SRCS_HIT = $(addprefix ./srcs/hit/, hit_shape.c)
 
 MAIN = ./srcs/main.c
-SRCS = $(SRCS_IO) $(SRCS_CHECK) $(SRCS_INIT) $(SRCS_CALC) $(SRCS_RENDER) $(MAIN)
+SRCS = $(SRCS_IO) $(SRCS_CHECK) $(SRCS_INIT) $(SRCS_CALC) $(SRCS_RENDER) $(SRCS_HIT) $(MAIN)
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
