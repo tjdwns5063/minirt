@@ -41,7 +41,7 @@ int	rt_read(char *filename, t_data *data)
 	if (!parse(fd, data))
 		return (0);
 	close(fd);
-	//check_range
+	// check_range
 	if (!check_data(data))
 		return (0);
 	return (1);

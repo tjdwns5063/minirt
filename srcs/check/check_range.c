@@ -7,17 +7,17 @@ int	check_rgb_range(t_data *data)
 	head = data->objs;
 	while (head)
 	{
-		if (head->rgb[R] < 0 || head->rgb[G] < 0 || head->rgb[B] < 0 || \
-			head->rgb[R] > 255 || head->rgb[G] > 255 || head->rgb[B] > 255)
+		if (head->rgb.x < 0 || head->rgb.y < 0 || head->rgb.z < 0 || \
+			head->rgb.x > 255 || head->rgb.y > 255 || head->rgb.z > 255)
 				return (0);
 		head = head->next;
 	}
-	return (0 <= data->a_light.rgb[R] && data->a_light.rgb[R] <= 255 && \
-		0 <= data->a_light.rgb[G] && data->a_light.rgb[G] <= 255 && \
-		0 <= data->a_light.rgb[B] && data->a_light.rgb[B] <= 255 && \
-		0 <= data->light.rgb[R] && data->light.rgb[R] <= 255 && \
-		0 <= data->light.rgb[G] && data->light.rgb[G] <= 255 && \
-		0 <= data->light.rgb[B] && data->light.rgb[B] <= 255);
+	return (0 <= data->a_light.rgb.x && data->a_light.rgb.x <= 255 && \
+		0 <= data->a_light.rgb.y && data->a_light.rgb.y <= 255 && \
+		0 <= data->a_light.rgb.z && data->a_light.rgb.z <= 255 && \
+		0 <= data->light.rgb.x && data->light.rgb.x <= 255 && \
+		0 <= data->light.rgb.y && data->light.rgb.y <= 255 && \
+		0 <= data->light.rgb.z && data->light.rgb.z <= 255);
 }
 
 int	check_vec_range(t_data *data)
@@ -28,14 +28,14 @@ int	check_vec_range(t_data *data)
 	while (head)
 	{
 		if ((head->id == PL || head->id == CY) && \
-			(head->norm_vec[X] < -1 || head->norm_vec[Y] < -1 || head->norm_vec[Z] < -1 \
-			|| head->norm_vec[X] > 1 || head->norm_vec[Y] > 1 || head->norm_vec[Z] > 1))
+			(head->vec.x < -1 || head->vec.y < -1 || head->vec.z < -1 \
+			|| head->vec.x > 1 || head->vec.y > 1 || head->vec.z > 1))
 				return (0);
 		head = head->next;
 	}
-	return (-1 <= data->cam.norm_vec[X] && data->cam.norm_vec[X] <= 1 && \
-		-1 <= data->cam.norm_vec[Y] && data->cam.norm_vec[Y] <= 1 && \
-		-1 <= data->cam.norm_vec[Z] && data->cam.norm_vec[Z] <= 1);
+	return (-1 <= data->cam.vec.x && data->cam.vec.x <= 1 && \
+		-1 <= data->cam.vec.y && data->cam.vec.y <= 1 && \
+		-1 <= data->cam.vec.z && data->cam.vec.z <= 1);
 }
 
 int	check_light_ratio_range(t_data *data)

@@ -32,20 +32,19 @@ int main(int ac, char **av)
 	init_mlx(&(mlx));
 	init_canvas(&canvas, &mlx);
 	print_data(data);
-	printf("x: %f y: %f z: %f\n", data.cam.left_bottom[X], data.cam.left_bottom[Y], data.cam.left_bottom[Z]);
-	int color = ((int)data.objs->rgb[0] << 16) + ((int)data.objs->rgb[1] << 8) + ((int)data.objs->rgb[2]);
 	for (int i = 0; i < 800; i++)
 	{
 		for (int j = 0; j < 600; j++)
 		{
 			t_ray ray;
+			t_color	color;
 
 			double u, v;
 			u = (double)i / 799;
 			v = (double)j / 599;
 			init_ray(&ray, &data, u, v);
 			color = get_color(&ray, data.objs);
-			img_pixel_put(&canvas, i, j, color);
+			img_pixel_put(&canvas, i, j, &color);
 		}
 	}
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);

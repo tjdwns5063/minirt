@@ -20,6 +20,7 @@ void	print_pl(t_obj *obj);
 void	print_cyl(t_obj *obj);
 void	print_obj(t_obj *obj);
 void	print_data(t_data data);
+void	print_vec(t_vec *vec);
 t_obj	*lst_new(int id);
 void	lst_addback(t_obj **head, t_obj *new);
 

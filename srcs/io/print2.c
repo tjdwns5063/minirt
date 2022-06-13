@@ -1,14 +1,19 @@
 #include "minirt.h"
 
+void	print_vec(t_vec *vec)
+{
+	printf("%f, %f, %f", vec->x, vec->y, vec->z);
+}
+
 void	print_cyl(t_obj *obj)
 {
 	if (obj->id != CY)
 		return ;
 	printf("cy %f,%f,%f  %f,%f,%f  %f  %f  %f,%f,%f\n", \
-		obj->coord[X], obj->coord[Y], obj->coord[Z], \
-		obj->norm_vec[X], obj->norm_vec[Y], obj->norm_vec[Z], \
+		obj->point.x, obj->point.y, obj->point.z, \
+		obj->vec.x, obj->vec.y, obj->vec.z, \
 		obj->diameter, obj->height, \
-		obj->rgb[R], obj->rgb[G], obj->rgb[B]);
+		obj->rgb.x, obj->rgb.y, obj->rgb.z);
 }
 
 void	print_obj(t_obj *obj)
