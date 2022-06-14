@@ -6,5 +6,6 @@ int		init_mlx(t_mlx *mlx);
 int		init_ray(t_ray *ray, t_data *data, double u, double v);
 int		init_canvas(t_canvas *canvas, t_mlx *mlx);
 t_vec	init_vec(double x, double y, double z);
+void	set_cam_vec(t_cam *cam);
 
 # endif

@@ -8,10 +8,10 @@ int	hit_sphere(t_obj *sp, t_ray *r)
 	double	c;
 	double	discrim;
 
-    oc = init_vec(r->vec.x - sp->point.x, r->vec.y - sp->point.y, r->vec.z - sp->point.z);
-	a = pow(r->vec.x, 2.) + pow(r->vec.y , 2.) + pow(r->vec.z, 2.);
-	b = ((r->vec.x * oc.x) + (r->vec.y * oc.y) + (r->vec.z * oc.z)) * 2.;
-	c = (pow(oc.x , 2.) + pow(oc.y, 2.) + pow(oc.z, 2.)) - (pow(sp->diameter / 2., 2.));
+    oc = vec_minus(r->point, sp->point);
+	a = vec_dot(r->vec, r->vec);
+	b = vec_dot(oc, r->vec) * 2.;
+	c = vec_dot(oc, oc) - pow((sp->diameter / 2), 2.);
 	discrim = b * b - 4 * a * c;
 	return (discrim > 0); 
 }

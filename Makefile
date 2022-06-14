@@ -15,7 +15,7 @@ SRCS_IO = $(addprefix ./srcs/io/, read.c io_utils.c parse.c parse2.c lst_utils.c
 	print.c print2.c)
 SRCS_CHECK = $(addprefix ./srcs/check/, check_format.c check_utils.c check_range.c)
 SRCS_INIT = $(addprefix ./srcs/init/, init.c init2.c)
-SRCS_CALC = $(addprefix ./srcs/calc/, vec_calc.c)
+SRCS_CALC = $(addprefix ./srcs/calc/, vec_calc.c calc_utils.c vec_calc2.c)
 SRCS_RENDER = $(addprefix ./srcs/render/, render.c)
 SRCS_HIT = $(addprefix ./srcs/hit/, hit_shape.c)
 

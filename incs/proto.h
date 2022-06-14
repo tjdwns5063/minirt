@@ -7,6 +7,7 @@ typedef	struct	s_vec		t_color;
 typedef struct	s_data		t_data;
 typedef struct	s_a_light	t_a_light;
 typedef struct	s_light		t_light;
+typedef struct	s_cam_vec	t_cam_vec;
 typedef struct	s_cam		t_cam;
 typedef struct	s_ray		t_ray;
 typedef struct	s_obj		t_obj;
@@ -27,22 +28,31 @@ struct	s_a_light
 	t_color	rgb;
 };
 
+struct s_cam_vec
+{
+	t_vec	u;
+	t_vec	v;
+	t_vec	w;
+};
+
+
 struct	s_cam
 {
 	// double	coord[3];
-	t_point	point;
+	t_point		point;
 	// double	norm_vec[3];
-	t_vec	vec;
-	double	fov;
-	double	focal_len;
-	double	v_height;
-	double	v_width;
+	t_vec		vec;
+	double		fov;
+	double		focal_len;
+	double		v_height;
+	double		v_width;
+	t_cam_vec	cam_vec;
 	// double	horizontal[3];
-	t_vec	horizontal;
+	t_vec		horizontal;
 	// double	vertical[3];
-	t_vec	vertical;
+	t_vec		vertical;
 	// double	left_bottom[3];
-	t_vec	left_bottom;
+	t_vec		left_bottom;
 };
 
 struct	s_light
