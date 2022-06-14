@@ -14,19 +14,19 @@ int main(int ac, char **av)
 	init_mlx(&(mlx));
 	init_canvas(&canvas, &mlx);
 	print_data(data);
-	for (int i = 0; i < 800; i++)
+	for (int j = 899; j >= 0; j--)
 	{
-		for (int j = 0; j < 600; j++)
+		for (int i = 0; i < 1600; i++)
 		{
 			t_ray ray;
 			t_color	color;
 
 			double u, v;
-			u = (double)i / 799;
-			v = (double)j / 599;
+			u = (double)i / 1599;
+			v = (double)j / 899;
 			init_ray(&ray, &data, u, v);
 			color = get_color(&ray, data.objs);
-			img_pixel_put(&canvas, i, j, &color);
+			img_pixel_put(&canvas, i, 899 - j, &color);
 		}
 	}
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);

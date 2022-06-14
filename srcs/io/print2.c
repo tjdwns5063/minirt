@@ -2,7 +2,7 @@
 
 void	print_vec(t_vec *vec)
 {
-	printf("%f, %f, %f", vec->x, vec->y, vec->z);
+	printf("%f, %f, %f\n", vec->x, vec->y, vec->z);
 }
 
 void	print_cyl(t_obj *obj)
