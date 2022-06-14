@@ -88,6 +88,8 @@ typedef struct s_ray
 
 struct	s_data
 {
+	int			width;
+	int			height;
 	t_a_light	a_light;
 	t_cam		cam;
 	t_light		light;

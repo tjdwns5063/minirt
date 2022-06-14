@@ -10,23 +10,22 @@ int main(int ac, char **av)
 		return (print_error("Error\n", 1));
 	if (!rt_read(av[1], &data))
 		return (print_error("Error\n", 1));
-	init_cam(&(data.cam));
-	init_mlx(&(mlx));
-	init_canvas(&canvas, &mlx);
+	if (!init(&data, &mlx, &canvas))
+		return (print_error("Error\n", 1));
 	print_data(data);
-	for (int j = 899; j >= 0; j--)
+	for (int j = data.height - 1; j >= 0; j--)
 	{
-		for (int i = 0; i < 1600; i++)
+		for (int i = 0; i < data.width; i++)
 		{
 			t_ray ray;
 			t_color	color;
 
 			double u, v;
-			u = (double)i / 1599;
-			v = (double)j / 899;
+			u = (double)i / (data.width - 1);
+			v = (double)j / (data.height - 1);
 			init_ray(&ray, &data, u, v);
 			color = get_color(&ray, data.objs);
-			img_pixel_put(&canvas, i, 899 - j, &color);
+			img_pixel_put(&canvas, i, data.height - 1 - j, &color);
 		}
 	}
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);

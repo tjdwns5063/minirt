@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-int	init_cam(t_cam *cam)
+int	init_cam(t_cam *cam, int width, int height)
 {
 	double	range;
 	double	radian;
@@ -8,30 +8,33 @@ int	init_cam(t_cam *cam)
 
 	radian = degrees_to_radians(cam->fov);
 	range = tan(radian / 2);
-	aspect_ratio = 16.0 * range / 9.0;
+	aspect_ratio = width * range / height;
 	cam->focal_len = 1.0;
 	cam->v_height = 2.0;
 	cam->v_width = cam->v_height * aspect_ratio;
-	set_cam_vec(cam);
+	if (!set_cam_vec(cam))
+		return (0);
 	cam->horizontal = vec_mul_scala(cam->cam_vec.u, cam->v_width);
 	cam->vertical = vec_mul_scala(cam->cam_vec.v, cam->v_height);
-	cam->left_bottom = vec_minus(cam->point, vec_div_scala(cam->horizontal, 2.));
-	cam->left_bottom = vec_minus(cam->left_bottom, vec_div_scala(cam->vertical, 2.));
-	cam->left_bottom = vec_minus(cam->left_bottom, cam->cam_vec.w);
+	if (!set_left_bottom(cam))
+		return (0);
 	return (1);
 }
 
-int	init_mlx(t_mlx *mlx)
+int	init_mlx(t_mlx *mlx, int width, int height)
 {
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
 		return (0);
-	mlx->win = mlx_new_window(mlx->mlx, 1600, 900, "minirt");
+	mlx->win = mlx_new_window(mlx->mlx, width, height, "minirt");
 	if (!mlx->win)
 		return (0);
-	mlx->img = mlx_new_image(mlx->mlx, 1600, 900);
+	mlx->img = mlx_new_image(mlx->mlx, width, height);
 	if (!mlx->img)
+	{
+		mlx_destroy_window(mlx->mlx, mlx->win);
 		return (0);
+	}
 	return (1);
 }
 
@@ -48,5 +51,7 @@ int	init_ray(t_ray *ray, t_data *data, double u, double v)
 	ray->vec = vec_plus(ray->vec, vec_mul_scala(data->cam.vertical, v));
 	ray->vec = vec_minus(ray->vec, data->cam.point);
 	ray->vec = vec_unit(ray->vec);
+	if (ray->vec.x == -3 && ray->vec.y == -3 && ray->vec.z == -3)
+		return (0);
 	return (1);
 }
