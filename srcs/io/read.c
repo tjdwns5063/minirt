@@ -38,6 +38,7 @@ int	rt_read(char *filename, t_data *data)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (0);
+	data->objs = 0;
 	if (!parse(fd, data))
 		return (0);
 	close(fd);

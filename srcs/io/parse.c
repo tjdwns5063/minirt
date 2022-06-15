@@ -34,18 +34,17 @@ int	parse_data(t_data *data, char *line, int id)
 	ret = 0;
 	convert_line(line);
 	tokens = ft_split(line, ' ');
-	data->objs = 0;
 	if (id == A)
 		ret += parse_a_light(data, tokens);
-	else if (id == C)
+	if (id == C)
 		ret += parse_cam(data, tokens);
-	else if (id == L)
+	if (id == L)
 		ret += parse_light(data, tokens);
-	else if (id == SP)
+	if (id == SP)
 		ret += parse_sphere(data, tokens, id);
-	else if (id == PL)
+	if (id == PL)
 		ret += parse_plane(data, tokens, id);
-	else if (id == CY)
+	if (id == CY)
 		ret += parse_cylinder(data, tokens, id);
 	double_arr_free((void **)tokens);
 	return (ret);

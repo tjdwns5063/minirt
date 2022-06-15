@@ -7,6 +7,7 @@ int	parse_sphere(t_data *data, char **tokens, int id)
 	sph = lst_new(id);
 	if (!sph)
 		return (0);
+	// printf("sph\n");
 	sph->point = init_vec(ft_atof(tokens[1]), ft_atof(tokens[2]), ft_atof(tokens[3]));
 	sph->diameter = ft_atof(tokens[4]);
 	sph->rgb = init_vec(ft_atof(tokens[5]), ft_atof(tokens[6]), ft_atof(tokens[7]));
@@ -21,10 +22,12 @@ int parse_plane(t_data *data, char **tokens, int id)
 	pl = lst_new(id);
 	if (!pl)
 		return (0);
+	// printf("pl\n");
 	pl->point = init_vec(ft_atof(tokens[1]), ft_atof(tokens[2]), ft_atof(tokens[3]));
 	pl->vec = init_vec(ft_atof(tokens[4]), ft_atof(tokens[5]), ft_atof(tokens[6]));
 	pl->rgb = init_vec(ft_atof(tokens[7]), ft_atof(tokens[8]), ft_atof(tokens[9]));
 	lst_addback(&(data->objs), pl);
+	// printf("pl: %d\n", data->objs->id);
 	return (1);
 }
 
@@ -35,6 +38,7 @@ int parse_cylinder(t_data *data, char **tokens, int id)
 	cyl = lst_new(id);
 	if (!cyl)
 		return (0);
+	// printf("cyl\n");
 	// cyl->coord[X] = ft_atof(tokens[1]);
 	// cyl->coord[Y] = ft_atof(tokens[2]);
 	// cyl->coord[Z] = ft_atof(tokens[3]);

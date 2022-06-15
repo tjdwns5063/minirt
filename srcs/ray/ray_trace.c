@@ -9,7 +9,7 @@ t_color	ray_color(t_ray *r, t_obj *sp)
 
     record.t_min = 0; //t의 최솟값
     record.t_max = INFINITY; // t의 최댓값
-	if (hit_sphere(sp, r, &record))
+	if (hit(sp, r, &record))
     {
         ret = vec_mul_scala(init_vec(record.normal.x + 1, record.normal.y + 1, record.normal.z + 1), 0.5);
 		return (ret);
