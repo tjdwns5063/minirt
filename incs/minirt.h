@@ -17,6 +17,7 @@
 # include "io.h"
 # include "calc.h"
 # include "hit.h"
+# include "ray.h"
 # include "render.h"
 
 # endif

@@ -18,9 +18,11 @@ SRCS_INIT = $(addprefix ./srcs/init/, init.c init2.c)
 SRCS_CALC = $(addprefix ./srcs/calc/, vec_calc.c calc_utils.c vec_calc2.c)
 SRCS_RENDER = $(addprefix ./srcs/render/, render.c)
 SRCS_HIT = $(addprefix ./srcs/hit/, hit_shape.c)
+SRCS_RAY = $(addprefix ./srcs/ray/, ray_trace.c ray_utils.c)
 
 MAIN = ./srcs/main.c
-SRCS = $(SRCS_IO) $(SRCS_CHECK) $(SRCS_INIT) $(SRCS_CALC) $(SRCS_RENDER) $(SRCS_HIT) $(MAIN)
+SRCS = $(SRCS_IO) $(SRCS_CHECK) $(SRCS_INIT) $(SRCS_CALC) $(SRCS_RENDER) \
+	$(SRCS_HIT) $(SRCS_RAY) $(MAIN)
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

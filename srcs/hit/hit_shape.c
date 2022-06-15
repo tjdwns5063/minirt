@@ -13,5 +13,7 @@ int	hit_sphere(t_obj *sp, t_ray *r)
 	b = vec_dot(oc, r->vec) * 2.;
 	c = vec_dot(oc, oc) - pow((sp->diameter / 2), 2.);
 	discrim = b * b - 4 * a * c;
-	return (discrim > 0); 
+	if (discrim < 0)
+		return (0);
+	return ((-b - sqrt(discrim)) / (2.0 * a)); // 작은근 
 }
