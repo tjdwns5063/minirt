@@ -24,7 +24,7 @@ int main(int ac, char **av)
 			u = (double)i / (data.width - 1);
 			v = (double)j / (data.height - 1);
 			init_ray(&ray, &data, u, v);
-			color = ray_color(&ray, data.objs);
+			color = ray_color(&data, &ray);
 			img_pixel_put(&canvas, i, data.height - 1 - j, &color);
 		}
 	}

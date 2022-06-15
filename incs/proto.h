@@ -101,6 +101,7 @@ struct	s_hit_record
 {
 	t_point		point;
 	t_vec		normal;
+	t_vec		color;
 	double		t_min;
 	double		t_max;
 	double		t;

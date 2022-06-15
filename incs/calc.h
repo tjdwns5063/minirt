@@ -8,6 +8,7 @@ double  degrees_to_radians(double degree);
 t_vec	vec_cross(t_vec v1, t_vec v2);
 double	vec_dot(t_vec v1, t_vec v2);
 t_vec	vec_unit(t_vec v);
+t_vec   vec_min(t_vec v1, t_vec v2);
 t_vec   vec_mul_scala(t_vec v, double s);
 t_vec   vec_div_scala(t_vec v, double s);
 
