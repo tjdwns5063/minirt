@@ -56,3 +56,16 @@ int	init(t_data *data, t_mlx *mlx, t_canvas *canvas)
 	init_canvas(canvas, mlx);
 	return (1);
 }
+
+int	set_intersection(double discrim, double a, double b, t_hit_record *record)
+{
+	int	condition;
+
+	condition = check_discrim(discrim, a, b, record);
+	if (!condition)
+		return (0);
+	else if (condition < 0)
+		record->t = -b - sqrt(discrim) / a;
+	record->t = -b + sqrt(discrim) / a;
+	return (1);
+}

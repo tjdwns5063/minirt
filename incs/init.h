@@ -9,5 +9,7 @@ int		init(t_data *data, t_mlx *mlx, t_canvas *canvas);
 t_vec	init_vec(double x, double y, double z);
 int		set_cam_vec(t_cam *cam);
 int		set_left_bottom(t_cam *cam);
+int		set_intersection(double discrim, double a, double b, t_hit_record *record);
+int		set_front_face(t_ray *r, t_hit_record *record);
 
 # endif

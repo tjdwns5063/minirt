@@ -12,8 +12,8 @@
 # include "proto.h"
 # include "macro.h"
 
-# include "init.h"
 # include "check.h"
+# include "init.h"
 # include "io.h"
 # include "calc.h"
 # include "hit.h"

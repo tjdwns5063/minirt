@@ -1,18 +1,19 @@
 #ifndef PROTO_H
 # define PROTO_H
 
-typedef struct	s_vec		t_vec;
-typedef struct	s_vec		t_point;
-typedef	struct	s_vec		t_color;
-typedef struct	s_data		t_data;
-typedef struct	s_a_light	t_a_light;
-typedef struct	s_light		t_light;
-typedef struct	s_cam_vec	t_cam_vec;
-typedef struct	s_cam		t_cam;
-typedef struct	s_ray		t_ray;
-typedef struct	s_obj		t_obj;
-typedef struct	s_canvas	t_canvas;
-typedef struct	s_mlx		t_mlx;
+typedef struct	s_vec			t_vec;
+typedef struct	s_vec			t_point;
+typedef	struct	s_vec			t_color;
+typedef struct	s_data			t_data;
+typedef struct	s_a_light		t_a_light;
+typedef struct	s_light			t_light;
+typedef struct	s_cam_vec		t_cam_vec;
+typedef struct	s_cam			t_cam;
+typedef struct	s_ray			t_ray;
+typedef struct	s_obj			t_obj;
+typedef	struct	s_hit_record	t_hit_record;
+typedef struct	s_canvas		t_canvas;
+typedef struct	s_mlx			t_mlx;
 
 struct s_vec
 {
@@ -94,6 +95,16 @@ struct	s_data
 	t_cam		cam;
 	t_light		light;
 	t_obj		*objs;
+};
+
+struct	s_hit_record
+{
+	t_point		point;
+	t_vec		normal;
+	double		t_min;
+	double		t_max;
+	double		t;
+	int			front_face;
 };
 
 struct s_canvas
