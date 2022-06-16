@@ -44,14 +44,19 @@ int	init_canvas(t_canvas *canvas, t_mlx *mlx)
 	return (1);
 }
 
-int	init_ray(t_ray *ray, t_data *data, double u, double v)
+int	init_ray(t_ray *ray, t_data *data, int i, int j)
 {
+	double	u;
+	double	v;
+
+	u = (double)i / (data->width - 1);
+	v = (double)j / (data->height - 1);
 	ray->point = data->cam.point;
 	ray->vec = vec_plus(data->cam.left_bottom, vec_mul_scala(data->cam.horizontal, u));
 	ray->vec = vec_plus(ray->vec, vec_mul_scala(data->cam.vertical, v));
 	ray->vec = vec_minus(ray->vec, data->cam.point);
 	ray->vec = vec_unit(ray->vec);
-	if (ray->vec.x == -3 && ray->vec.y == -3 && ray->vec.z == -3)
-		return (0);
+	// if (isnan(ray->vec.x) && isnan(ray->vec.y) && isnan(ray->vec.z))
+	// 	return (0);
 	return (1);
 }

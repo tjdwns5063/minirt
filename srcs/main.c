@@ -11,22 +11,17 @@ int main(int ac, char **av)
 	if (!rt_read(av[1], &data))
 		return (print_error("Error\n", 1));
 	if (!init(&data, &mlx, &canvas))
-		return (print_error("Error\n", 1));
-	print_data(data);
-	for (int j = data.height - 1; j >= 0; j--)
 	{
-		for (int i = 0; i < data.width; i++)
-		{
-			t_ray ray;
-			t_color	color;
-
-			double u, v;
-			u = (double)i / (data.width - 1);
-			v = (double)j / (data.height - 1);
-			init_ray(&ray, &data, u, v);
-			color = ray_color(&data, &ray);
-			img_pixel_put(&canvas, i, data.height - 1 - j, &color);
-		}
+		mlx_destroy_image(mlx.mlx, mlx.img);
+		mlx_destroy_window(mlx.mlx, mlx.win);
+		return (print_error("Error\n", 1));
+	}
+	print_data(data);
+	if (!draw_img(&data, &canvas))
+	{
+		mlx_destroy_image(mlx.mlx, mlx.img);
+		mlx_destroy_window(mlx.mlx, mlx.win);
+		return (print_error("Error\n", 1));
 	}
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img, 0, 0);
 	mlx_loop(mlx.mlx);

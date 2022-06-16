@@ -40,11 +40,11 @@ t_vec	vec_unit(t_vec v)
 	t_vec	ret;
 
 	len = vec_length(&v);
-	if (len == 0)
+	if (len == 0.)
 	{
-		ret.x = -3;
-		ret.y = -3;
-		ret.z = -3;
+		ret.x = nan(0);
+		ret.y = nan(0);
+		ret.z = nan(0);
 		return (ret);
 	}
 	ret.x = v.x / len;
