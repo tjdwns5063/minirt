@@ -20,10 +20,10 @@ int	set_cam_vec(t_cam *cam)
 	lookat = cam->vec;
 	vup = init_vec(0, 1, 0);
 	cam->cam_vec.w = vec_unit(vec_minus(lookfrom, lookat));
-	if (cam->cam_vec.w.x == -3 && cam->cam_vec.w.y == -3 && cam->cam_vec.w.z == -3)
+	if (isnan(cam->cam_vec.w.x) && isnan(cam->cam_vec.w.y) && isnan(cam->cam_vec.w.z))
 		return (0);
 	cam->cam_vec.u = vec_unit(vec_cross(vup, cam->cam_vec.w));
-	if (cam->cam_vec.u.x == -3 && cam->cam_vec.u.y == -3 && cam->cam_vec.u.z == -3)
+	if (isnan(cam->cam_vec.u.x) && isnan(cam->cam_vec.u.y) && isnan(cam->cam_vec.u.z))
 		return (0);
 	cam->cam_vec.v = vec_cross(cam->cam_vec.w, cam->cam_vec.u);
 	return (1);

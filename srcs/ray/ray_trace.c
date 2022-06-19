@@ -28,7 +28,6 @@ t_color	ray_color(t_data *data, t_ray *r)
 	t_color	        ret;
     t_hit_record    record;
     t_obj           *head;
-    // t_vec   normal;
 
     record.t_min = 0; //t의 최솟값
     record.t_max = INFINITY; // t의 최댓값

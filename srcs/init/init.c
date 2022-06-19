@@ -56,7 +56,7 @@ int	init_ray(t_ray *ray, t_data *data, int i, int j)
 	ray->vec = vec_plus(ray->vec, vec_mul_scala(data->cam.vertical, v));
 	ray->vec = vec_minus(ray->vec, data->cam.point);
 	ray->vec = vec_unit(ray->vec);
-	// if (isnan(ray->vec.x) && isnan(ray->vec.y) && isnan(ray->vec.z))
-	// 	return (0);
+	if (isnan(ray->vec.x) && isnan(ray->vec.y) && isnan(ray->vec.z))
+		return (0);
 	return (1);
 }

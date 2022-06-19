@@ -35,7 +35,6 @@ int	draw_img(t_data *data, t_canvas *canvas)
 		{
 			if (!init_ray(&ray, data, i, j))
 				return (0);
-			// init_ray(&ray, data, i, j);
 			color = ray_color(data, &ray);
 			img_pixel_put(canvas, i, data->height - 1 - j, &color);
 		}
