@@ -1,34 +1,5 @@
 #include "minirt.h"
 
-int	hit(t_obj *objs, t_ray *ray, t_hit_record *record)
-{
-	t_obj	*temp;
-	int		ret;
-
-	temp = objs;
-	ret = 0;
-	while (temp)
-	{
-		if (hit_objs(temp, ray, record))
-		{
-			ret = 1;
-			record->t_max = record->t;
-		}
-		temp = temp->next;
-	}
-	return (ret);
-}
-
-int	hit_objs(t_obj *objs, t_ray *ray, t_hit_record *record)
-{
-	int	ret;
-
-	ret = 0;
-	if (objs->id == SP)
-		ret = hit_sphere(objs, ray, record);
-	return (ret);
-}
-
 int	hit_sphere(t_obj *sp, t_ray *r, t_hit_record *record)
 {
 	t_vec   oc;
@@ -48,6 +19,31 @@ int	hit_sphere(t_obj *sp, t_ray *r, t_hit_record *record)
 	if (isnan(record->normal.x) && isnan(record->normal.y) && isnan(record->normal.z))
 		return (0);
 	record->color = sp->rgb;
+	set_front_face(r, record);
+	return (1);
+}
+
+int	hit_plane(t_obj *pl, t_ray *r, t_hit_record *record)
+{
+	double	a;
+	double	b;
+	double	c;
+	double	discrim;
+	t_vec	vec;
+
+	vec = vec_minus(pl->point, r->point);
+	a = 0.;
+	b = vec_dot(pl->vec, r->vec);
+	c = vec_dot(pl->vec, vec);
+	discrim = b * b - a * c;
+	if (c != 0)
+	{
+		record->t = b / c;
+	}
+	record->normal = vec_unit(vec_minus(ray_at(r, record->t), pl->point));
+	if (isnan(record->normal.x) && isnan(record->normal.y) && isnan(record->normal.z))
+		return (0);
+	record->color = pl->rgb;
 	set_front_face(r, record);
 	return (1);
 }

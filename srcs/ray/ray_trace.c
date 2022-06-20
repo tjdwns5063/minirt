@@ -32,6 +32,7 @@ t_color	ray_color(t_data *data, t_ray *r)
     record.t_min = 0; //t의 최솟값
     record.t_max = INFINITY; // t의 최댓값
     head = data->objs;
+    //수정 필요
 	if (hit(head, r, &record))
     {
         ret = apply_light(data, &record);

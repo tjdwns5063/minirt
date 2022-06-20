@@ -17,7 +17,7 @@ SRCS_CHECK = $(addprefix ./srcs/check/, check_format.c check_utils.c check_range
 SRCS_INIT = $(addprefix ./srcs/init/, init.c init2.c init3.c)
 SRCS_CALC = $(addprefix ./srcs/calc/, vec_calc.c calc_utils.c vec_calc2.c)
 SRCS_RENDER = $(addprefix ./srcs/render/, render.c)
-SRCS_HIT = $(addprefix ./srcs/hit/, hit_shape.c)
+SRCS_HIT = $(addprefix ./srcs/hit/, hit_shape.c hit_logic.c)
 SRCS_RAY = $(addprefix ./srcs/ray/, ray_trace.c ray_utils.c)
 
 MAIN = ./srcs/main.c
