@@ -9,15 +9,20 @@ t_color apply_light(t_data *data, t_hit_record *record)
     t_vec   light_to_inter;
 
     //ambient
+    // if (record->color.x != 100.)
+    //     printf("color: %f %f %f\n", record->color.x, record->color.y, record->color.z);
     ret = init_vec(0., 0., 0.);
     ambient = vec_mul_scala(vec_div_scala(data->a_light.rgb, 255.), data->a_light.light_ratio);
     ret = vec_plus(ret, ambient);
     //diffuse
     light_to_inter = vec_unit(vec_minus(data->light.point, record->point));
     angle_of_incidence = vec_dot(light_to_inter, record->normal);
+    // printf("aoi: %f\n", angle_of_incidence);
     if (angle_of_incidence < 0.0)
         angle_of_incidence = 0.0;
-    diffuse = vec_mul_scala(vec_div_scala(record->color, 255.), data->light.light_ratio * angle_of_incidence);
+    record->color = vec_div_scala(record->color, 255.);
+    record->color = vec_mul_scala(record->color, data->light.light_ratio);
+    diffuse = vec_mul_scala(record->color, angle_of_incidence);
     ret = vec_plus(ret, diffuse);
     return (vec_min(ret, init_vec(1., 1., 1.)));
 }
@@ -27,13 +32,11 @@ t_color	ray_color(t_data *data, t_ray *r)
 	double	        t;
 	t_color	        ret;
     t_hit_record    record;
-    t_obj           *head;
 
     record.t_min = 0; //t의 최솟값
     record.t_max = INFINITY; // t의 최댓값
-    head = data->objs;
     //수정 필요
-	if (hit(head, r, &record))
+	if (hit(data, r, &record))
     {
         ret = apply_light(data, &record);
 		return (ret);

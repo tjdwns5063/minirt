@@ -1,11 +1,11 @@
 #include "minirt.h"
 
-int	hit(t_obj *objs, t_ray *ray, t_hit_record *record)
+int	hit(t_data *data, t_ray *ray, t_hit_record *record)
 {
 	t_obj	*temp;
 	int		ret;
 
-	temp = objs;
+	temp = data->objs;
 	ret = 0;
 	while (temp)
 	{
