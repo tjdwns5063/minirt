@@ -15,10 +15,9 @@ int	hit_sphere(t_obj *sp, t_ray *r, t_hit_record *record)
 	discrim = b * b - a * c;
 	if (!set_intersection(discrim, a, b, record))
 		return (0);
+	// printf("sphere_t: %f\n", record->t);
 	record->point = ray_at(r, record->t);
 	record->normal = vec_unit(vec_minus(record->point, sp->point));
-	if (isnan(record->normal.x) && isnan(record->normal.y) && isnan(record->normal.z))
-		return (0);
 	record->color = sp->rgb;
 	set_front_face(r, record);
 	return (1);
@@ -34,19 +33,15 @@ int	hit_plane(t_obj *pl, t_ray *r, t_hit_record *record)
 
 	vec = vec_minus(pl->point, r->point);
 	a = 0.;
-	b = vec_dot(pl->vec, r->vec);
+	b = vec_dot(r->vec, pl->vec);
 	c = vec_dot(pl->vec, vec);
-	// discrim = b * b - a * c;
-	if (c == 0)
+	if (c == 0 || !check_root(b / c, record))
 		return (0);
 	record->t = b / c;
+	// printf("plane_t: %f\n", record->t);
 	record->point = ray_at(r, record->t);
-	// print_vec(&record->point);
 	vec = vec_unit(vec_minus(record->point, pl->point));
 	record->normal = vec_cross(vec, pl->vec);
-	if (isnan(record->normal.x) && isnan(record->normal.y) && isnan(record->normal.z))
-		return (0);
 	record->color = pl->rgb;
-	set_front_face(r, record);
 	return (1);
 }

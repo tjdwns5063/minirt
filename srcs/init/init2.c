@@ -18,17 +18,18 @@ int	set_cam_vec(t_cam *cam)
 
 	lookfrom = cam->point;
 	lookat = cam->vec;
+	lookat.x *= lookfrom.x;
+	lookat.y *= lookfrom.y;
+	lookat.z *= lookfrom.z;
+	lookat = vec_plus(lookfrom, lookat);
 	vup = init_vec(0, 1, 0);
-	cam->cam_vec.w = vec_minus(vec_unit(lookfrom), lookat);
-	if (isnan(cam->cam_vec.w.x) && isnan(cam->cam_vec.w.y) && isnan(cam->cam_vec.w.z))
-		return (0);
-	cam->cam_vec.u = vec_cross(cam->cam_vec.w, vup);
-	if (isnan(cam->cam_vec.u.x) && isnan(cam->cam_vec.u.y) && isnan(cam->cam_vec.u.z))
-		return (0);
-	cam->cam_vec.v = vec_cross(cam->cam_vec.u, cam->cam_vec.w);
-	printf("w: %f %f %f\n", cam->cam_vec.w.x, cam->cam_vec.w.y, cam->cam_vec.w.z);
-	printf("u: %f %f %f\n", cam->cam_vec.u.x, cam->cam_vec.u.y, cam->cam_vec.u.z);
-	printf("v: %f %f %f\n", cam->cam_vec.v.x, cam->cam_vec.v.y, cam->cam_vec.v.z);
+	cam->cam_vec.w = vec_unit(vec_minus(lookfrom, lookat));
+	cam->cam_vec.u = vec_unit(vec_cross(vup, cam->cam_vec.w));
+	cam->cam_vec.v = vec_cross(cam->cam_vec.w, cam->cam_vec.u);
+	printf("w.x: %f w.y: %f w.z: %f\n", cam->cam_vec.w.x, cam->cam_vec.w.y, cam->cam_vec.w.z);
+	printf("u.x: %f u.y: %f u.z: %f\n", cam->cam_vec.u.x, cam->cam_vec.u.y, cam->cam_vec.u.z);
+	printf("v.x: %f v.y: %f v.z: %f\n", cam->cam_vec.v.x, cam->cam_vec.v.y, cam->cam_vec.v.z);
+
 	return (1);
 }
 

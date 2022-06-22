@@ -38,7 +38,9 @@ t_color	ray_color(t_data *data, t_ray *r)
     //수정 필요
 	if (hit(data, r, &record))
     {
-        ret = apply_light(data, &record);
+        // ret = apply_light(data, &record);
+        // printf("record_t: %f\n", record.t);
+        ret = record.color;
 		return (ret);
     }
 	t = 0.5 * (r->vec.y + 1.0);

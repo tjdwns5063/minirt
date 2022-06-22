@@ -16,9 +16,9 @@ t_vec   vec_div_scala(t_vec v, double s)
 
     if (s == 0.)
     {
-        ret.x = -3;
-        ret.y = -3;
-        ret.z = -3;
+        ret.x = 0;
+        ret.y = 0;
+        ret.z = 0;
         return (ret);
     }
     ret.x = v.x / s;

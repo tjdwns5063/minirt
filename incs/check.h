@@ -10,5 +10,6 @@ int			check_ext(char *filename);
 int			check_id_cnt(int *arr);
 int			check_data(t_data *data);
 int			check_discrim(double discrim, double a, double b, t_hit_record *record);
+int			check_root(double root, t_hit_record *record);
 
 # endif

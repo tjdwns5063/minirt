@@ -3,10 +3,9 @@
 int	parse_a_light(t_data *data, char **tokens)
 {
 	data->a_light.light_ratio = ft_atof(tokens[1]);
-	// data->a_light.rgb[R] = ft_atof(tokens[2]);
-	// data->a_light.rgb[G] = ft_atof(tokens[3]);
-	// data->a_light.rgb[B] = ft_atof(tokens[4]);
-	data->a_light.rgb = init_vec(ft_atof(tokens[2]), ft_atof(tokens[3]), ft_atof(tokens[4]));
+	data->a_light.rgb = init_vec(ft_atof(tokens[2]) / 255.,\
+	 ft_atof(tokens[3]) / 255.,\
+	 ft_atof(tokens[4]) / 255.);
 	return (1);
 }
 
@@ -22,7 +21,9 @@ int	parse_light(t_data *data, char **tokens)
 {
 	data->light.point = init_vec(ft_atof(tokens[1]), ft_atof(tokens[2]), ft_atof(tokens[3]));
 	data->light.light_ratio = ft_atof(tokens[4]);
-	data->light.rgb = init_vec(ft_atof(tokens[5]), ft_atof(tokens[6]), ft_atof(tokens[7]));
+	data->light.rgb = init_vec(ft_atof(tokens[5]) / 255.,\
+	 ft_atof(tokens[6]) / 255.,\
+	 ft_atof(tokens[7]) / 255.);
 	return (1);
 }
 
