@@ -11,5 +11,6 @@ t_vec	vec_unit(t_vec v);
 t_vec   vec_min(t_vec v1, t_vec v2);
 t_vec   vec_mul_scala(t_vec v, double s);
 t_vec   vec_div_scala(t_vec v, double s);
+double  rt_abs(double d);
 
 # endif

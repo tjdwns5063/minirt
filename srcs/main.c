@@ -17,6 +17,8 @@ int main(int ac, char **av)
 		return (print_error("Error\n", 1));
 	}
 	print_data(data);
+	t_vec temp = vec_unit(init_vec(30,173,70));
+	print_vec(&temp);
 	if (!draw_img(&data, &canvas))
 	{
 		mlx_destroy_image(mlx.mlx, mlx.img);

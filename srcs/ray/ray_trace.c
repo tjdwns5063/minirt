@@ -12,7 +12,7 @@ t_color apply_light(t_data *data, t_hit_record *record)
     // if (record->color.x != 100.)
     //     printf("color: %f %f %f\n", record->color.x, record->color.y, record->color.z);
     ret = init_vec(0., 0., 0.);
-    ambient = vec_mul_scala(vec_div_scala(data->a_light.rgb, 255.), data->a_light.light_ratio);
+    ambient = vec_mul_scala(data->a_light.rgb, data->a_light.light_ratio);
     ret = vec_plus(ret, ambient);
     //diffuse
     light_to_inter = vec_unit(vec_minus(data->light.point, record->point));
@@ -20,7 +20,6 @@ t_color apply_light(t_data *data, t_hit_record *record)
     // printf("aoi: %f\n", angle_of_incidence);
     if (angle_of_incidence < 0.0)
         angle_of_incidence = 0.0;
-    record->color = vec_div_scala(record->color, 255.);
     record->color = vec_mul_scala(record->color, data->light.light_ratio);
     diffuse = vec_mul_scala(record->color, angle_of_incidence);
     ret = vec_plus(ret, diffuse);
@@ -38,9 +37,9 @@ t_color	ray_color(t_data *data, t_ray *r)
     //수정 필요
 	if (hit(data, r, &record))
     {
-        // ret = apply_light(data, &record);
+        ret = apply_light(data, &record);
         // printf("record_t: %f\n", record.t);
-        ret = record.color;
+        // ret = record.color;
 		return (ret);
     }
 	t = 0.5 * (r->vec.y + 1.0);

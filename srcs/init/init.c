@@ -8,16 +8,14 @@ int	init_cam(t_cam *cam, int width, int height)
 
 	radian = degrees_to_radians(cam->fov);
 	range = tan(radian / 2);
-	aspect_ratio = width * range / height;
+	aspect_ratio = 16 / 9;
 	cam->focal_len = 1.0;
-	cam->v_height = 2.0;
-	cam->v_width = cam->v_height * aspect_ratio;
-	if (!set_cam_vec(cam))
-		return (0);
+	cam->v_width = 2.0 * range;
+	cam->v_height = cam->v_width * pow(aspect_ratio, -1.);
+	set_cam_vec(cam);
 	cam->horizontal = vec_mul_scala(cam->cam_vec.u, cam->v_width);
 	cam->vertical = vec_mul_scala(cam->cam_vec.v, cam->v_height);
-	if (!set_left_bottom(cam))
-		return (0);
+	set_left_bottom(cam);
 	return (1);
 }
 

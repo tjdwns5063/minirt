@@ -35,10 +35,18 @@ int	hit_plane(t_obj *pl, t_ray *r, t_hit_record *record)
 	a = 0.;
 	b = vec_dot(r->vec, pl->vec);
 	c = vec_dot(pl->vec, vec);
-	if (c == 0 || !check_root(b / c, record))
+	discrim = b * b - 4 * a * c;
+	if (discrim < 0 || c == 0)
+	{
+		printf("discrim\n");
 		return (0);
+	}
+	// if (!check_root(b / c, record))
+	// {
+	// 	printf("root\n");
+	// 	return (0);
+	// }
 	record->t = b / c;
-	// printf("plane_t: %f\n", record->t);
 	record->point = ray_at(r, record->t);
 	vec = vec_unit(vec_minus(record->point, pl->point));
 	record->normal = vec_cross(vec, pl->vec);
